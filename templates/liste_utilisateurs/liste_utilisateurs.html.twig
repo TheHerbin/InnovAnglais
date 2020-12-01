@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}
+	- Liste utilisateurs
+{% endblock %}
+
+{% block body %}
+	{{parent()}}
+	<div class="container">
+		<div class="row justify-content-center">
+			<h1 class="text-center text-primary p-4">Liste des utilisateurs
+			</h1>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 bg-white p-4 m-0 text-primary">
+				<div class="responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr class="table-info">
+								<th scope="row">Email
+								</th>
+								<td>Entreprise
+								</td>
+								<td>Adresse
+								</td>
+								<td>Abonnement
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for utilisateur in utilisateurs %}
+								<tr class={{cycle(['table-active', 'table-primary'],loop.index0) }}>
+									<td>{{utilisateur.email}}</td>
+									<td>{{utilisateur.entreprise}}</td>
+									<td>{{utilisateur.adresse}}</td>
+									<td>{{utilisateur.abonnement.nom}}</td>
+									<td><a href="{{path('modif_utilisateur',{'id':utilisateur.id})}}"><span title="Modifier l'utilisateur" class="material-icons">brush </span></td>
+									<td> <td><a href="{{path('liste_utilisateurs',{'supp':utilisateur.id})}}"><span  title="Supprimer l'utilisateur" class="material-icons">cancel </span></td>
+									 </td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div></div>{% endblock %}

@@ -25,9 +25,9 @@ class Abonnement
     private $posologie;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(type="integer", length=10)
      */
-    private $modalitesdepaiement;
+    private $prix;
 
     /**
      * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="abonnement")
@@ -61,14 +61,14 @@ class Abonnement
         return $this;
     }
 
-    public function getModalitesdepaiement(): ?string
+    public function getPrix(): ?int
     {
-        return $this->modalitesdepaiement;
+        return $this->prix;
     }
 
-    public function setModalitesdepaiement(string $modalitesdepaiement): self
+    public function setPrix(int $prix): self
     {
-        $this->modalitesdepaiement = $modalitesdepaiement;
+        $this->prix = $prix;
 
         return $this;
     }

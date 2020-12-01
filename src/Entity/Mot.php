@@ -26,11 +26,6 @@ class Mot
 
 
     /**
-     * @ORM\Column(type="string", length=35)
-     */
-    private $categorie;
-
-    /**
      * @ORM\ManyToMany(targetEntity=ListeDeMots::class, mappedBy="mots")
      */
     private $listeDeMots;
@@ -58,17 +53,6 @@ class Mot
     }
 
 
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
 
     /**
      * @return Collection|ListeDeMots[]
