@@ -25,6 +25,12 @@ class ListeDeMots
      */
     private $mots;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="listeDeMots")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $theme;
+
     public function __construct()
     {
         $this->mots = new ArrayCollection();
@@ -57,6 +63,18 @@ class ListeDeMots
     public function removeMot(Mot $mot): self
     {
         $this->mots->removeElement($mot);
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }

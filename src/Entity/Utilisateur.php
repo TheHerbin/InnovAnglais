@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,22 @@ class Utilisateur
      * @ORM\Column(type="string", length=125)
      */
     private $adresse;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Abonnement::class, inversedBy="utilisateurs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $abonnement;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tests::class, inversedBy="utilisateurs")
+     */
+    private $tests;
+
+    public function __construct()
+    {
+        $this->tests = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +104,42 @@ class Utilisateur
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getAbonnement(): ?Abonnement
+    {
+        return $this->abonnement;
+    }
+
+    public function setAbonnement(?Abonnement $abonnement): self
+    {
+        $this->abonnement = $abonnement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tests[]
+     */
+    public function getTests(): Collection
+    {
+        return $this->tests;
+    }
+
+    public function addTest(Tests $test): self
+    {
+        if (!$this->tests->contains($test)) {
+            $this->tests[] = $test;
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Tests $test): self
+    {
+        $this->tests->removeElement($test);
 
         return $this;
     }
