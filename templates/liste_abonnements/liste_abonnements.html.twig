@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}
+	- Liste Abonnement
+{% endblock %}
+
+{% block body %}
+	{{parent()}}
+	<div class="container">
+		<div class="row justify-content-center">
+			<h1 class="text-center text-primary p-4">Liste des abonnements
+			</h1>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 bg-white p-4 m-0 text-primary">
+				<div class="responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr class="table-info">
+								<th scope="row">Id
+								</th>
+								<td>Posologie
+								</td>
+								<td>Nom
+								</td>
+								<td>Prix 
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for abonnement in abonnements %}
+								<tr class={{cycle(['table-active', 'table-primary'],loop.index0) }}>
+									<td>{{abonnement.id}}</td>
+									<td>{{abonnement.posologie}}</td>
+									<td>{{abonnement.nom}}</td>
+									<td>{{abonnement.prix}}</td>
+									<td><a href="{{path('modif_abonnement',{'id':abonnement.id})}}"><span title="Modifier l'abonnement" class="material-icons">brush </span></td>
+									<td> <td><a href="{{path('liste_abonnements',{'supp':abonnement.id})}}"><span  title="Supprimer l'abonnement" class="material-icons">cancel </span></td>
+									 </td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div></div>{% endblock %}

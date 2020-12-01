@@ -24,15 +24,13 @@ class Mot
      */
     private $libelle;
 
+    
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ListeDeMots::class, mappedBy="mots")
-     */
-    private $listeDeMots;
+
 
     public function __construct()
     {
-        $this->listeDeMots = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -52,32 +50,9 @@ class Mot
         return $this;
     }
 
+   
 
 
-    /**
-     * @return Collection|ListeDeMots[]
-     */
-    public function getListeDeMots(): Collection
-    {
-        return $this->listeDeMots;
-    }
 
-    public function addListeDeMot(ListeDeMots $listeDeMot): self
-    {
-        if (!$this->listeDeMots->contains($listeDeMot)) {
-            $this->listeDeMots[] = $listeDeMot;
-            $listeDeMot->addMot($this);
-        }
-
-        return $this;
-    }
-
-    public function removeListeDeMot(ListeDeMots $listeDeMot): self
-    {
-        if ($this->listeDeMots->removeElement($listeDeMot)) {
-            $listeDeMot->removeMot($this);
-        }
-
-        return $this;
-    }
+   
 }

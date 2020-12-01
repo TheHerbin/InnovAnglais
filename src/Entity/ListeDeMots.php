@@ -20,16 +20,21 @@ class ListeDeMots
     private $id;
 
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Mot::class, inversedBy="listeDeMots")
-     */
-    private $mots;
+ 
 
     /**
      * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="listeDeMots")
      * @ORM\JoinColumn(nullable=false)
      */
     private $theme;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Mot::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $mots;
+
+  
 
     public function __construct()
     {
@@ -43,29 +48,7 @@ class ListeDeMots
 
  
 
-    /**
-     * @return Collection|Mot[]
-     */
-    public function getMots(): Collection
-    {
-        return $this->mots;
-    }
-
-    public function addMot(Mot $mot): self
-    {
-        if (!$this->mots->contains($mot)) {
-            $this->mots[] = $mot;
-        }
-
-        return $this;
-    }
-
-    public function removeMot(Mot $mot): self
-    {
-        $this->mots->removeElement($mot);
-
-        return $this;
-    }
+    
 
     public function getTheme(): ?Theme
     {
@@ -78,4 +61,18 @@ class ListeDeMots
 
         return $this;
     }
+
+    public function getMots(): ?Mot
+    {
+        return $this->mots;
+    }
+
+    public function setMots(?Mot $mots): self
+    {
+        $this->mots = $mots;
+
+        return $this;
+    }
+
+   
 }
